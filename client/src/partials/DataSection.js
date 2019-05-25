@@ -5,15 +5,19 @@ import '../App.css'
 export default function DataSection() {
   const [data, setData] = useState(0)
 
-  useEffect(async () => {
-    const response = await axios.get('/sample/get')
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get('/sample/get')
 
-    setData(response.data)
-  })
+      setData(response.data)
+    }
+    fetchData()
+  }, [])
 
   return (
     <div>
-      <p>Response: { data.toJSON }</p>
+      <p>Response:</p>
+      { JSON.stringify(data) }
     </div>
   )
 }
